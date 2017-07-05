@@ -1,7 +1,10 @@
 var express = require('express');
 var app = express();
+var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var Slot = require("./models/slot");
 
+mongoose.connect("mongodb://localhost/pair_up");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
@@ -12,27 +15,36 @@ app.get('/', function (req, res) {
 });
 
 
-var slots = [
-    {name: "Dug", startTime: "3pm"},
-    {name: "Bill", startTime: "4pm"}
-]
+
+// var slots = [
+//     {name: "Dug", startTime: "3pm"},
+//     {name: "Bill", startTime: "4pm"}
+// ]
+
+
 //User Time Slots Home Page
 app.get('/slots', function (req, res) {
-    res.render("slots.ejs", {slots:slots});
+    res.render("slots.ejs");
 });
 
+//CREATE - add new time slot to DB
 app.post("/slots", function(req, res){
     // get data from form and add to slots array
     var name = req.body.name;
     var startTime = req.body.startTime;
     var newSlot = {name: name, startTime: startTime};
-    slots.push(newSlot);
-    //redirect back to slots page
-    res.redirect("/slots");
-    console.log(slots);
+    //Create new time slot and save to DB
+    Slot.create(newSlot, function(err, newSlot){
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/slots");
+        }
+    });
+
 });
 
-//Create time slot page
+//NEW - show form to create time slot
 app.get('/slots/new', function (req, res) {
     res.render("new.ejs");
 });
