@@ -5,7 +5,25 @@
 <li><a href="/slots/new">Create New Time Slot</a></li>
 
 <h2>Current Availability</h2>
-<%= slots %>
+
+<div class="ui divided items">
+    <% slots.forEach(function(slot){ %>
+    <div class="item">
+        <div class="content">
+            <a class="name"><%= slot.name %></a>
+            <div class="slot">
+                <a href="/slots/<%= slot._id %>">
+                    <h2>Your Slot: <%= slot.startTime%> - <%= slot.endTime%></h2>
+                </a>
+            </div>
+
+            <!--<div class="end_time">-->
+                <!--<h1>slot.endTime</h1>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <% }); %>
+</div>
 
 <h2>Your Matches</h2>
 

@@ -2,7 +2,9 @@ var mongoose = require("mongoose");
 
 var slotSchema = new mongoose.Schema({
     name: String,
-    startTime: String
+    startTime: String,
+    endTime: String,
+    description: String,
 
 });
 
