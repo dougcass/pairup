@@ -24,7 +24,14 @@ app.get('/', function (req, res) {
 
 //User Time Slots Home Page
 app.get('/slots', function (req, res) {
-    res.render("slots.ejs");
+    Slot.find({}, function(err, slots){
+        if(err){
+            console.log("error");
+        } else {
+            res.render("slots", {slots: slots});
+        }
+    });
+
 });
 
 //CREATE - add new time slot to DB
