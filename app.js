@@ -52,6 +52,11 @@ app.post("/slots", function(req, res){
 
 });
 
+//NEW - show form to create time slot
+app.get("/slots/new", function (req, res){
+    res.render("new");
+});
+
 //SHOW
 app.get("/slots/:id", function(req, res){
     Slot.findById(req.params.id, function(err, foundSlot){
@@ -65,10 +70,7 @@ app.get("/slots/:id", function(req, res){
 
 
 
-//NEW - show form to create time slot
-app.get('/slots/new', function (req, res) {
-    res.render("new.ejs");
-});
+
 
 
 
