@@ -4,9 +4,29 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var Slot = require("./models/slot");
 
+// var Flatpickr = require("flatpickr");
+// require("/node_modules/flatpickr/dist/flatpickr.min.css");
+// require("/node_modules/flatpickr/dist/flatpickr.dark.min.css");
+// Flatpickr('#flatpickr', {});
+
+
+
+
 mongoose.connect("mongodb://localhost/pair_db");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+
+// var global = require("global");
+// var window = global.window;
+// import root from 'window-or-global';
+
+// flatpickr('#flatpickr', {enableTime: true});
+
+
+
+
+
+
 
 Slot.create({
     name: "Doug",
