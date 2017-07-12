@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
 var Slot = require("./models/slot");
 
 // var Flatpickr = require("flatpickr");
@@ -15,6 +16,7 @@ var Slot = require("./models/slot");
 mongoose.connect("mongodb://localhost/pair_db");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 
 // var global = require("global");
 // var window = global.window;
@@ -82,8 +84,19 @@ app.get("/slots/:id", function(req, res){
     Slot.findById(req.params.id, function(err, foundSlot){
         if(err){
             res.redirect("/slots");
-        }else {
-            res.render("show", {slot: foundSlot})
+        } else {
+            res.render("show", {slot: foundSlot});
+        }
+    });
+});
+
+//DESTROY
+app.delete("/slots/:id", function(req, res){
+    Slot.findByIdAndRemove(req.params.id, function(err){
+        if(err) {
+            res.redirect("/slots/:id");
+        } else {
+            res.redirect("/slots");
         }
     });
 });
