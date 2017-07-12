@@ -4,8 +4,7 @@ var slotSchema = new mongoose.Schema({
     name: String,
     startTime: Date,
     endTime: Date,
-    description: String,
-
+    description: String
 });
 
 
