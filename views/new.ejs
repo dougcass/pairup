@@ -8,14 +8,11 @@
                     <div class="form-group">
                         <input class="form-control" type="text" name="slot[name]" placeholder="name">
                     </div>
-                    <div>
-                        <input id="flatpickr" type="text" placeholder="Select Date.." data-id="datetime" >
+                    <div class="form-group">
+                        <input id="flatpickr" type="date" name="slot[startTime]" placeholder="Start Time" >
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="slot[startTime]" placeholder="Start time">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="slot[endTime]" placeholder="End time">
+                        <input id="flatpickr" type="date" name="slot[endTime]" placeholder="End time">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-lg btn-primary btn-block">Submit!</button>
@@ -27,16 +24,13 @@
     </div>
 
     <div class="container">
-        <input id="flatpickr" placeholder="Try me.." class="form-control">
+        <input id="flatpickr flatpicker-input active" type="date"   placeholder="Try me.." class="form-control">
     </div>
 
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
     <script>
-        var example =  flatpickr("#flatpickr", {
-            "dateFormat": "d-m-Y",
-            //"maxDate": new Date(),
-            "minDate": "1950-01-01",
+        var pickr =  flatpickr("#flatpickr", {
             enableTime: true,
             allowInput: true
         });

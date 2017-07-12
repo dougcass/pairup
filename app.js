@@ -28,12 +28,12 @@ app.set("view engine", "ejs");
 
 
 
-Slot.create({
-    name: "Doug",
-    startTime: "3pm",
-    endTime: "5pm",
-    description: "Work"
-});
+// Slot.create({
+//     name: "Doug",
+//     startTime: "3pm",
+//     endTime: "5pm",
+//     description: "Work"
+// });
 
 //Landing Page
 app.get('/', function (req, res) {
