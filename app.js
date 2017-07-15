@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var Slot = require("./models/slot");
+JSON = require('JSON');
 
 // var Flatpickr = require("flatpickr");
 // require("/node_modules/flatpickr/dist/flatpickr.min.css");
@@ -74,6 +75,16 @@ app.post("/slots", function(req, res){
 
 });
 
+// app.post("/slots", function(req, res){
+//     Slot.all(function (err, slots) {
+//     allSlots = slots;
+//     console.log(allSlots);
+//
+//
+// });
+//
+// });
+
 //NEW - show form to create time slot
 app.get("/slots/new", function (req, res){
     res.render("new");
@@ -103,7 +114,285 @@ app.delete("/slots/:id", function(req, res){
 
 
 
+//undefined result
+// var allSlots;
+// Slot.all(function (err, slots) {
+//     allSlots = slots;
+//
+// });
+//
+// console.log(allSlots);
 
+
+
+
+// logs slots in array
+Slot.all(function (err, slots) {
+    allSlots = slots;
+    console.log(allSlots[0].name);
+
+
+});
+
+//logs found slot
+Slot.findByName('fred', function(err, slots) {
+    fredSlots = slots;
+    console.log(fredSlots);
+});
+
+// Slot.findName(function (err, slots) {
+//     fredSlots = slots;
+//     console.log(allSlots[0].name);
+//
+//
+// });
+
+// Slot.findByName(function(Fred, err, slots) {
+//     var fredSlots = slots;
+//     console.log(fredSlots);
+//
+//
+// });
+
+
+
+
+
+
+
+
+
+
+// function getAllSlots(){
+//     var query = Slot.find({}, function(err, slots) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             slots
+//         }
+//     });
+//         return query;
+// }
+//
+// getAllSlots();
+
+
+
+// function getAllSlots(){
+//     var query = Slot.find({}).lean().exec(function (err, allSlots) {
+//         allSlots
+//     });
+//     return query;
+// };
+//
+//
+// //
+// var query = getAllSlots();
+// // query.toObject();
+// console.log(query);
+
+
+// var all = Slot.find(function (err, allSlots) {
+//     if (err) return console.error(err);
+//     var all = allSlots;
+//     all.toObject();
+// });
+//
+// console.log(all);
+
+
+
+
+
+// Slot.find({}, callback) {
+//     if (err) {
+//         callback(err, null);
+//     } else {
+//         callback(null, allSlots);
+//     }
+// });
+// };
+//
+// var all = findAllSlots();
+//
+// console.log(all);
+
+
+
+
+
+
+
+
+
+
+
+
+// Slot.find({}).lean().exec(function (err, docs) {
+//     // docs are plain javascript objects instead of model instances
+//     if(err){
+//         console.log("OH NO, ERROR!");
+//         console.log(err);
+//     } else {
+//         var allSlots = JSON.stringify(slots);
+//
+//     }
+// });
+
+// var findAll = function(){
+//     Slot.find({}, function(err, slots){
+//         if(err){
+//             console.log("OH NO, ERROR!");
+//             console.log(err);
+//         } else {
+//            var all = JSON.stringify(slots);
+//
+//         }
+//          all;
+//     });
+// }
+//
+// findAll();
+//
+// console.log(all);
+
+
+//works returns array
+// var findAll = Slot.find({}, function(err, slots){
+//
+//     if(err){
+//         console.log("OH NO, ERROR!");
+//         console.log(err);
+//     } else {
+//         console.log(JSON.stringify(slots));
+//
+//
+//     }
+// });
+
+
+// console.log(findAll);
+
+
+
+// works returns wrapper
+// var findAll = Slot.find({}, function(err, slots){
+//
+//     if(err){
+//         console.log("OH NO, ERROR!");
+//         console.log(err);
+//     } else {
+//         var allSlots = JSON.stringify(slots);
+//
+//
+//     }
+// });
+
+
+// console.log(findAll);
+
+// returns objects only in console****
+// var allSlots = function (){
+//     var resultArray = [];
+//     Slot.find({}, function(err, slots){
+//         if(err){
+//             console.log(err);
+//         } else {
+//             // console.log(slots);
+//             resultArray.push(slots);
+//         }
+//
+//     });
+// };
+
+
+
+
+//Returns Wrapper***
+// var allSlots = Slot.find({}).lean().exec(function (err, slots) {
+//     // var resultArray = [];
+//     if(err){
+//         console.log(err);
+//     } else {
+//         // console.log(slots);
+//         // resultArray.push(JSON.stringify(slots));
+//         JSON.stringify(slots);
+//     }
+//
+// });
+//
+// console.log(allSlots);
+
+
+// Slot.find({}).exec(function (error, slots){
+//     allSlots = slots; // Sets article.owner to user's _id
+//     allSlots.save();           // Persists _id to DB, pass in another callback if necessary
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var all;
+//
+// Slot.find({} , function(er , allSlots){
+//     var all = allSlots;
+//     // console.log(allSlots); // works fine
+//     yieldAllSlots();
+// });
+//
+// // console.log(name); // name is empty here, because the DB request is still in progress at this stage
+// //
+//  function yieldAllSlots() {
+//     console.log(all);
+// }
+
+
+// var query = Slot.find({});
+//
+//
+// var all = query.select();
+// console.log(all);
+
+// var allSlots = Slot.find({}, function (err, slots){});
+
+
+
+// var allSlots;
+// Slot.find({}, function(slots){
+//     allSlots = slots;
+// });
+//
+// console.log(allSlots);
+//
+//
+// var allSlots = function (res) {
+//     Slot.find({}, function(err, slots) {
+//         if (err) res(err, null);
+//         res(null, slots);
+//     });
+// }
+//
+// allSlots(function(err, res) {
+//     if(res) {
+//         var all = allSlots;
+//     }
+// });
+//
+// console.log(all);
 
 
 

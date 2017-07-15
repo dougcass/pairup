@@ -5,7 +5,38 @@ var slotSchema = new mongoose.Schema({
     startTime: Date,
     endTime: Date,
     description: String
+
 });
+//works
+// slotSchema.statics.all = function (cb) {
+//     return this.model('Slot').find({}, cb);
+// };
+
+slotSchema.statics.all = function (cb) {
+    return this.find({}, cb);
+};
+
+
+//works
+slotSchema.statics.findByName = function(name, cb) {
+    return this.find({ name: new RegExp(name, 'i')  }, cb);
+};
+
+
+
+// new RegExp(name, 'i'
+// slotSchema.statics.findName = function (name, cb) {
+//     return this.model('Slot').findOne({'name': 'name'}, cb);
+// };
+
+
+// slotSchema.methods.findByName = function(name, cb) {
+//     return this.model('Slot').find({ name: name }, cb);
+// };
+
+// slotSchema.statics.findByName = function (name, cb) {
+//     return this.model('Slot').findOne({name : "name"}, cb);
+// };
 
 
 
@@ -22,4 +53,4 @@ var slotSchema = new mongoose.Schema({
 //     }
 // });
 
-module.exports = mongoose.model('slot', slotSchema);
+module.exports = mongoose.model('Slot', slotSchema);
