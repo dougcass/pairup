@@ -6,6 +6,7 @@ var slotSchema = new mongoose.Schema({
     endTime: Date,
     description: String
 
+
 });
 //works
 // slotSchema.statics.all = function (cb) {

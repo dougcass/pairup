@@ -137,8 +137,36 @@ Slot.all(function (err, slots) {
 //logs found slot
 Slot.findByName('fred', function(err, slots) {
     fredSlots = slots;
-    console.log(fredSlots);
+    fredSlots;
 });
+
+
+// function allSlots(slots){
+//     var fredSlots = slots;
+// }
+//
+// var findAll = function(){
+//     Slot.findByName('fred', function(err, slots) {
+//         slots;
+//
+//         allSlots(slots);
+//     });
+// }
+//
+// console.log(fredSlots);
+
+
+
+
+
+
+
+
+
+
+//
+// console.log(all);
+
 
 // Slot.findName(function (err, slots) {
 //     fredSlots = slots;
