@@ -68,18 +68,18 @@ app.use(slotsRoutes);
 
 
 // logs slots in array
-Slot.all(function (err, slots) {
-    allSlots = slots;
-    console.log(allSlots[0].name);
-
-
-});
+// Slot.all(function (err, slots) {
+//     allSlots = slots;
+//     console.log(allSlots[0].name);
+//
+//
+// });
 
 //logs found slot
-Slot.findByName('fred', function(err, slots) {
-    fredSlots = slots;
-    fredSlots;
-});
+// Slot.findByName('fred', function(err, slots) {
+//     fredSlots = slots;
+//     fredSlots;
+// });
 
 
 // function allSlots(slots){
@@ -226,7 +226,7 @@ Slot.findByName('fred', function(err, slots) {
 // console.log(all);
 
 
-//works returns array
+// works returns array
 // var findAll = Slot.find({}, function(err, slots){
 //
 //     if(err){
