@@ -4,7 +4,10 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var Slot = require("./models/slot");
-JSON = require('JSON');
+// JSON = require('JSON');
+var slotsRoutes = require("./routes/slots");
+var indexRoutes = require("./routes/index");
+
 
 // var Flatpickr = require("flatpickr");
 // require("/node_modules/flatpickr/dist/flatpickr.min.css");
@@ -18,6 +21,11 @@ mongoose.connect("mongodb://localhost/pair_db");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
+
+app.use(indexRoutes);
+app.use(slotsRoutes);
+
+
 
 // var global = require("global");
 // var window = global.window;
@@ -38,79 +46,12 @@ app.use(methodOverride("_method"));
 //     description: "Work"
 // });
 
-//Landing Page
-app.get('/', function (req, res) {
-    res.render("landing.ejs");
-});
-
-
-//User Time Slots Home Page
-app.get('/slots', function (req, res) {
-    Slot.find({}, function(err, slots){
-        if(err){
-            console.log("error");
-        } else {
-            res.render("slots", {slots: slots});
-        }
-    });
-
-});
 
 
 
-//CREATE - add new time slot to DB
-app.post("/slots", function(req, res){
-    // get data from form and add to slots array
-    // var name = req.body.name;
-    // var startTime = req.body.startTime;
-    // var newSlot = {name: name, startTime: startTime};
-    //Create new time slot and save to DB
-    Slot.create(req.body.slot, function(err, newSlot){
-        if(err) {
-            console.log(err);
-        } else {
-            res.redirect("/slots");
-        }
-    });
 
-});
 
-// app.post("/slots", function(req, res){
-//     Slot.all(function (err, slots) {
-//     allSlots = slots;
-//     console.log(allSlots);
-//
-//
-// });
-//
-// });
 
-//NEW - show form to create time slot
-app.get("/slots/new", function (req, res){
-    res.render("new");
-});
-
-//SHOW
-app.get("/slots/:id", function(req, res){
-    Slot.findById(req.params.id, function(err, foundSlot){
-        if(err){
-            res.redirect("/slots");
-        } else {
-            res.render("show", {slot: foundSlot});
-        }
-    });
-});
-
-//DESTROY
-app.delete("/slots/:id", function(req, res){
-    Slot.findByIdAndRemove(req.params.id, function(err){
-        if(err) {
-            res.redirect("/slots/:id");
-        } else {
-            res.redirect("/slots");
-        }
-    });
-});
 
 
 
