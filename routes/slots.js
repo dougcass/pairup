@@ -4,6 +4,7 @@ var Slot = require("../models/slot");
 
 
 
+
 //User Time Slots Home Page
 router.get('/slots', function (req, res) {
     Slot.find({}, function(err, slots){
@@ -72,19 +73,107 @@ router.delete("/slots/:id", function(req, res){
 });
 
 
+//Query-promise format: creates findAll array in function but global empty
+// var query = Slot.find({});
+//
+// var promise = query.exec();
+//
+// var findAll = [];
+//
+// var allSlots = promise.then(function (doc) {
+//     var all = doc;
+//     return all;
+//     }).then(function(all){
+//     return findAll.push(all);
+//
+//     });
+//
+// console.log(findAll);
+
+
+
+
+
+
+
+
+
+//Works returns object using static method
+// Slot.findByName("Doug", function(err, slot) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         // userSlot.push(slot);
+//         console.log(slot);
+//     }
+//     // do something with user
+// });
+
+
+//Works- assigns slots to allSlots variable in function scope
+// function retrieveAll(callback) {
+//     Slot.find({}, function(err, slots) {
+//         if (err) {
+//             callback(err, null);
+//         } else {
+//             callback(null, slots);
+//         }
+//     });
+// }
+//
+//
+// retrieveAll(function(err, slots) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         // userSlot.push(slot);
+//         // console.log(slots);
+//         var allSlots = slots;
+//         console.log(allSlots);
+//     }
+//
+// });
+
+
+
+
+
+
+
+
+
+
+
+
 // logs slots in array
-Slot.all(function (err, slots) {
-    allSlots = slots;
-    console.log(allSlots[0].name);
+// Slot.all(function (err, slots) {
+//     var allSlots = slots;
+//     console.log(allSlots[0].name);
+//
+//
+// });
 
 
-});
+
+
+
 
 //logs found slot
-Slot.findByName('fred', function(err, slots) {
-    fredSlots = slots;
-    fredSlots;
-});
+// Slot.findByName('fred', function(err, slots) {
+//     fredSlots = slots;
+//     fredSlots;
+// });
+
+// logs found user
+// Slot.findOne({name: 'Doug'})
+//     .then(function(user){
+//         console.log(user);
+//     });
+
+
+
+
+
 
 
 module.exports = router;
