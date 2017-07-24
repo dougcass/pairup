@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
+// var User = require("./user");
 
 var slotSchema = new mongoose.Schema({
-    name: String,
+    name: String, //{ type: Schema.Types.ObjectId, ref: 'user'},
     startTime: Date,
     endTime: Date,
     description: String
