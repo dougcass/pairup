@@ -44,7 +44,7 @@ router.post("/login", passport.authenticate("local",
 // logout route
 router.get("/logout", function(req, res){
     req.logout();
-    res.redirect("/slots");
+    res.redirect("/");
 });
 
 //middleware

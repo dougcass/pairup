@@ -7,8 +7,9 @@ var User = require("../models/user");
 
 
 
+
 //User Time Slots Home Page
-router.get('/slots', function (req, res) {
+router.get('/slots',isLoggedIn, function (req, res) {
     Slot.find({}, function(err, slots){
         if(err){
             console.log("error");
@@ -21,32 +22,31 @@ router.get('/slots', function (req, res) {
 
 
 //CREATE - add new time slot to DB
-router.post("/slots", function(req, res){
-    // get data from form and add to slots array
+router.post("/slots", isLoggedIn, function(req, res){
+    user = req.user;
     // var name = req.body.name;
     // var startTime = req.body.startTime;
     // var newSlot = {name: name, startTime: startTime};
     //Create new time slot and save to DB
-    Slot.create(req.body.slot, function(err, newSlot){
 
+    Slot.create(req.body.slot, function(err, slot){
         if(err) {
             console.log(err);
         } else {
+            //add username and id to new slot
+            slot.owner.id = req.user_id;
+            slot.owner.username = req.user.username;
+            slot.save();
+            user.slots.push(slot);
+            user.save();
+            // console.log(newSlot);
             res.redirect("/slots");
         }
     });
 
 });
 
-// app.post("/slots", function(req, res){
-//     Slot.all(function (err, slots) {
-//     allSlots = slots;
-//     console.log(allSlots);
-//
-//
-// });
-//
-// });
+
 
 //NEW - show form to create time slot
 router.get("/slots/new", function (req, res){
@@ -74,6 +74,13 @@ router.delete("/slots/:id", function(req, res){
         }
     });
 });
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 //Working promise syntax
 // function allSlots(){

@@ -7,8 +7,8 @@ var UserSchema = new mongoose.Schema({
     email: String,
     slots: [
         {
-	 	type: mongoose.Schema.Types.ObjectId,
-	 	ref: 'Slot'
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Slot'
 	    }
     ]
 });

@@ -1,9 +1,9 @@
 var mongoose = require("mongoose");
-// var User = require("./user");
+var User = require("./user");
 
 var slotSchema = new mongoose.Schema({
     owner: {
-        id: {
+       id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
