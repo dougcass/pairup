@@ -52,11 +52,7 @@ app.use(slotsRoutes);
 
 
 
-// var global = require("global");
-// var window = global.window;
-// import root from 'window-or-global';
 
-// flatpickr('#flatpickr', {enableTime: true});
 
 
 

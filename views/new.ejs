@@ -2,12 +2,10 @@
 
     <div class="container">
         <div class="row">
-            <h1 style="text-align: center">Create a New Time Slot</h1>
+            <h1 style="text-align: center">Create a New Time Slot <%= currentUser.username %></h1>
             <div style="width: 30%; margin: 25px auto;">
                 <form action="/slots" method="POST">
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="slot[name]" placeholder="name">
-                    </div>
+
                     <div class="form-group">
                         <input id="flatpickr" type="date" name="slot[startTime]" placeholder="Start Time" >
                     </div>
@@ -26,9 +24,7 @@
         </div>
     </div>
 
-    <div class="container">
-        <input id="flatpickr flatpicker-input active" type="date"   placeholder="Try me.." class="form-control">
-    </div>
+
 
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>

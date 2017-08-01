@@ -1,6 +1,8 @@
+// 'use strict';
 var express = require("express");
 var router = express.Router();
 var Slot = require("../models/slot");
+var User = require("../models/user");
 
 
 
@@ -26,6 +28,7 @@ router.post("/slots", function(req, res){
     // var newSlot = {name: name, startTime: startTime};
     //Create new time slot and save to DB
     Slot.create(req.body.slot, function(err, newSlot){
+
         if(err) {
             console.log(err);
         } else {
@@ -73,6 +76,24 @@ router.delete("/slots/:id", function(req, res){
 });
 
 
+function allSlots(){
+    return new Promise((resolve, reject) => {
+        Slot.find({}, function(err, slots) {
+
+            resolve(slots);
+
+        });
+    });
+}
+
+var x;
+
+allSlots().then((slots) => {
+    x = slots;
+});
+
+console.log(x);
+// console.log(allSlots);
 //Query-promise format: creates findAll array in function but global empty
 // var query = Slot.find({});
 //
@@ -87,7 +108,7 @@ router.delete("/slots/:id", function(req, res){
 //     return findAll.push(all);
 //
 //     });
-//
+
 // console.log(findAll);
 
 
@@ -122,17 +143,23 @@ router.delete("/slots/:id", function(req, res){
 // }
 //
 //
+// var allSlots;
+//
 // retrieveAll(function(err, slots) {
 //     if (err) {
 //         console.log(err);
 //     } else {
 //         // userSlot.push(slot);
 //         // console.log(slots);
-//         var allSlots = slots;
-//         console.log(allSlots);
+//         allSlots = slots;
+//         // console.log(allSlots);
 //     }
 //
 // });
+//
+// new Promise(function(res, rej) {})
+//
+// console.log(allSlots);
 
 
 
