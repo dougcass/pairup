@@ -75,24 +75,24 @@ router.delete("/slots/:id", function(req, res){
     });
 });
 
+//Working promise syntax
+// function allSlots(){
+//     return new Promise((resolve, reject) => {
+//         Slot.find({}, function(err, slots) {
+//
+//             resolve(slots);
+//
+//         });
+//     });
+// }
+//
+// var x;
+//
+// allSlots().then((slots) => {
+//     x = slots;
+// });
 
-function allSlots(){
-    return new Promise((resolve, reject) => {
-        Slot.find({}, function(err, slots) {
-
-            resolve(slots);
-
-        });
-    });
-}
-
-var x;
-
-allSlots().then((slots) => {
-    x = slots;
-});
-
-console.log(x);
+// console.log(x);
 // console.log(allSlots);
 //Query-promise format: creates findAll array in function but global empty
 // var query = Slot.find({});

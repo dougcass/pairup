@@ -10,7 +10,7 @@
     <% slots.forEach(function(slot){ %>
     <div class="item">
         <div class="content">
-            <a class="user_name"><%= slot.userName %></a>
+            <a class="user_name"><%= slot.owner %></a>
             <div class="slot">
                 <a href="/slots/<%= slot._id %>">
                     <h2>Your Slot: <%= slot.startTime%> - <%= slot.endTime%></h2>

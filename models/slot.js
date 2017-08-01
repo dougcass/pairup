@@ -2,7 +2,13 @@ var mongoose = require("mongoose");
 // var User = require("./user");
 
 var slotSchema = new mongoose.Schema({
-    userName: String, //{ type: Schema.Types.ObjectId, ref: 'user'},
+    owner: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    },
     startTime: Date,
     endTime: Date,
     description: String

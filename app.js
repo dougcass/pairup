@@ -11,10 +11,7 @@ var slotsRoutes = require("./routes/slots");
 var indexRoutes = require("./routes/index");
 
 
-// var Flatpickr = require("flatpickr");
-// require("/node_modules/flatpickr/dist/flatpickr.min.css");
-// require("/node_modules/flatpickr/dist/flatpickr.dark.min.css");
-// Flatpickr('#flatpickr', {});
+
 
 
 
@@ -26,7 +23,7 @@ app.use(methodOverride("_method"));
 
 
 
-//PASSPORT CCONFIG
+
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret: "Secret",

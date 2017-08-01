@@ -5,10 +5,12 @@ var UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     email: String,
-    slots: {
+    slots: [
+        {
 	 	type: mongoose.Schema.Types.ObjectId,
-	 	ref: 'slot'
-	}
+	 	ref: 'Slot'
+	    }
+    ]
 });
 
 UserSchema.plugin(passportLocalMongoose);
