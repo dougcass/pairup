@@ -170,7 +170,13 @@ router.delete("/slots/:id", function(req, res){
 //         console.log(user);
 //     });
 
-
+//middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 
 
