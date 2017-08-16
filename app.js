@@ -1,15 +1,16 @@
 var express = require('express');
 var app = express();
+var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
-var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var User = require("./models/user");
 var Slot = require("./models/slot");
+
+//requiring routes
 var slotsRoutes = require("./routes/slots");
 var indexRoutes = require("./routes/index");
-
 
 
 
@@ -30,6 +31,8 @@ app.use(require("express-session")({
     resave: false,
     saveUninitialized: false
 }));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -43,6 +46,8 @@ app.use(function(req, res, next){
 
 app.use(indexRoutes);
 app.use(slotsRoutes);
+
+
 
 
 

@@ -1,6 +1,6 @@
 // 'use strict';
 var express = require("express");
-var router = express.Router();
+var router = express.Router({mergeParams: true});
 var Slot = require("../models/slot");
 var User = require("../models/user");
 
@@ -34,7 +34,8 @@ router.post("/slots", isLoggedIn, function(req, res){
             console.log(err);
         } else {
             //add username and id to new slot
-            slot.owner.id = req.user_id;
+            //* req.user._id; ???
+            slot.owner.id = req.user.id;
             slot.owner.username = req.user.username;
             slot.save();
             user.slots.push(slot);
