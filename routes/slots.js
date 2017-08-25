@@ -10,15 +10,23 @@ var User = require("../models/user");
 
 //User Time Slots Home Page
 router.get('/slots',isLoggedIn, function (req, res) {
-    Slot.find({}, function(err, slots){
-        if(err){
-            console.log("error");
+    Slot.personal(req.user._id, function (err, slots) {
+        if (err) {
+            console.log(error);
         } else {
             res.render("slots", {slots: slots});
         }
-    });
+    })
 
 });
+
+// Slot.find({}, function(err, slots){
+//     if(err){
+//         console.log("error");
+//     } else {
+//         res.render("slots", {slots: slots});
+//     }
+// });
 
 
 //CREATE - add new time slot to DB
