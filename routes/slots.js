@@ -121,13 +121,13 @@ function isLoggedIn(req, res, next){
 
 
 
-Slot.search('foo', function (err, slot) {
-    if (err) {
-        console.log(error);
-    } else {
-        console.log(slot);
-    }
-})
+// Slot.personal( function (err, slot) {
+//     if (err) {
+//         console.log(error);
+//     } else {
+//         console.log(slot);
+//     }
+// })
 
 
 

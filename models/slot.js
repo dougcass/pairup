@@ -25,10 +25,26 @@ slotSchema.statics.all = function (cb) {
 };
 
 
-//works
+// search by username
 slotSchema.statics.search = function search (name, cb) {
     return this.where('owner.username', new RegExp(name, 'i')).exec(cb);
 };
+//execute method
+// Slot.search('foo', function (err, slot) {
+//     if (err) {
+//         console.log(error);
+//     } else {
+//         console.log(slot);
+//     }
+// })
+
+
+slotSchema.statics.personal = function personal (currentUser, cb) {
+    return this.where('owner.id', currentUser).exec(cb);
+};
+
+
+
 
 
 
@@ -49,16 +65,6 @@ slotSchema.statics.search = function search (name, cb) {
 
 
 
-// var slotSchema = new Schema({
-//     startTime: Date,
-//     endTime: Date,
-//     owner: {
-//         id: {
-//             type: Schema.Types.ObjectId,
-//             ref: 'user'
-//         },
-//         username: String
-//     }
-// });
+
 
 module.exports = mongoose.model('Slot', slotSchema);
