@@ -26,8 +26,8 @@ slotSchema.statics.all = function (cb) {
 
 
 //works
-slotSchema.statics.findByName = function(name, cb) {
-    return this.find({ userName: new RegExp(name, 'i')  }, cb);
+slotSchema.statics.search = function search (name, cb) {
+    return this.where('owner.username', new RegExp(name, 'i')).exec(cb);
 };
 
 

@@ -121,14 +121,20 @@ function isLoggedIn(req, res, next){
 
 
 
-
+Slot.search('foo', function (err, slot) {
+    if (err) {
+        console.log(error);
+    } else {
+        console.log(slot);
+    }
+})
 
 
 
 
 
 //Works returns object using static method
-// Slot.findByName("Doug", function(err, slot) {
+// Slot.findByName("brad", function(err, slot) {
 //     if (err) {
 //         console.log(err);
 //     } else {
@@ -200,7 +206,7 @@ function isLoggedIn(req, res, next){
 // });
 
 // logs found user
-// Slot.findOne({name: 'Doug'})
+// Slot.findOne({owner: 'glen'})
 //     .then(function(user){
 //         console.log(user);
 //     });
