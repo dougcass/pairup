@@ -48,6 +48,9 @@ slotSchema.statics.personal = function personal (currentUser, cb) {
 
 
 
+
+
+
 // new RegExp(name, 'i'
 // slotSchema.statics.findName = function (name, cb) {
 //     return this.model('Slot').findOne({'name': 'name'}, cb);
