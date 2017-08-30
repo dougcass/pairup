@@ -20,9 +20,11 @@ router.get('/slots',isLoggedIn, function (req, res) {
 
 });
 
-// Slot.find({}, function(err, slots){
-//     if(err){
-//         console.log("error");
+
+// find other users slots
+// Slot.find({ 'owner.id' : { $ne : req.user._id } },function(err, slots) {
+//     if (err) {
+//         console.log(err);
 //     } else {
 //         res.render("slots", {slots: slots});
 //     }
