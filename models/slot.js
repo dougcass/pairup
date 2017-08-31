@@ -20,15 +20,15 @@ var slotSchema = new mongoose.Schema({
 //     return this.model('Slot').find({}, cb);
 // };
 
-slotSchema.statics.all = function (cb) {
-    return this.find({}, cb);
-};
+// slotSchema.statics.all = function (cb) {
+//     return this.find({}, cb);
+// };
 
 
 // search by username
-slotSchema.statics.search = function search (name, cb) {
-    return this.where('owner.username', new RegExp(name, 'i')).exec(cb);
-};
+// slotSchema.statics.search = function search (name, cb) {
+//     return this.where('owner.username', new RegExp(name, 'i')).exec(cb);
+// };
 //execute method
 // Slot.search('foo', function (err, slot) {
 //     if (err) {
@@ -39,9 +39,9 @@ slotSchema.statics.search = function search (name, cb) {
 // })
 
 
-slotSchema.statics.personal = function personal (currentUser, cb) {
-    return this.where('owner.id', currentUser).exec(cb);
-};
+// slotSchema.statics.personal = function personal (currentUser, cb) {
+//     return this.where('owner.id', currentUser).exec(cb);
+// };
 
 
 

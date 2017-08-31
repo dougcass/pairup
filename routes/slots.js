@@ -10,14 +10,13 @@ var User = require("../models/user");
 
 //User Time Slots Home Page
 router.get('/slots',isLoggedIn, function (req, res) {
-    Slot.personal(req.user._id, function (err, slots) {
+    Slot.find({ 'owner.id' : req.user._id },function(err, slots) {
     if (err) {
-        console.log(error);
+        console.log(err);
     } else {
         res.render("slots", {slots: slots});
     }
-})
-
+});
 
 });
 
