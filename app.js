@@ -47,11 +47,34 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 app.use(slotsRoutes);
 
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
-
-
-
-
+// app.get('/slots',isLoggedIn, function (req, res) {
+//
+//     Slot.personal(req.user._id).exec()
+//         .then(function (personal) {
+//             return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
+//                 .then(function (other) {
+//                     return [personal, other];
+//                     console.log(personal);
+//                 });
+//         })
+//         .then(function (personal, other) {
+//             var personal = personal;
+//             var other = other;
+//             res.render("slots", {personal: personal, other: other});
+//             // res.render('./views/issues/index', {user: user, project: project, issues: issues});
+//         })
+//         .then(undefined, function (err) {
+//             console.log(err);
+//         })
+//
+// })
 
 
 

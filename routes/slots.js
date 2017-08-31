@@ -11,14 +11,25 @@ var User = require("../models/user");
 //User Time Slots Home Page
 router.get('/slots',isLoggedIn, function (req, res) {
     Slot.personal(req.user._id, function (err, slots) {
-        if (err) {
-            console.log(error);
-        } else {
-            res.render("slots", {slots: slots});
-        }
-    })
+    if (err) {
+        console.log(error);
+    } else {
+        res.render("slots", {slots: slots});
+    }
+})
+
 
 });
+
+
+// find current user slots
+// Slot.personal(req.user._id, function (err, slots) {
+//     if (err) {
+//         console.log(error);
+//     } else {
+//         res.render("slots", {slots: slots});
+//     }
+// })
 
 
 // find other users slots
@@ -86,12 +97,12 @@ router.delete("/slots/:id", function(req, res){
     });
 });
 
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
+// function isLoggedIn(req, res, next){
+//     if(req.isAuthenticated()){
+//         return next();
+//     }
+//     res.redirect("/login");
+// }
 
 //Working promise syntax
 // function allSlots(){
