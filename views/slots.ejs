@@ -25,7 +25,28 @@
     <% }); %>
 </div>
 
-<h2>Your Matches</h2>
+<h2>Potential Matches</h2>
+
+<div class="ui divided items">
+    <% other.forEach(function(slot){ %>
+    <div class="item">
+        <div class="content">
+
+            <div class="slot">
+                <a href="/slots/<%= slot._id %>">
+                    <h2>Your Slot: <%= slot.startTime%> - <%= slot.endTime%></h2>
+                </a>
+            </div>
+
+            <!--<div class="end_time">-->
+            <!--<h1>slot.endTime</h1>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <% }); %>
+</div>
+
+
 
 
 <% include ./partials/footer.ejs %>

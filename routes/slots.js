@@ -13,7 +13,13 @@ router.get('/slots',isLoggedIn, function (req, res) {
     Slot.find({'owner.id': req.user._id}).exec()
         .then(function (personal) {
             var personal = personal
-            res.render("slots", {personal: personal});
+            return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
+                .then(function (other) {
+                    var other = other
+                    // return [personal, other];
+                    res.render("slots", {personal: personal, other: other});
+                });
+
         })
             // var result = [];
         //     return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
@@ -45,8 +51,12 @@ router.get('/slots',isLoggedIn, function (req, res) {
     // })
 });
 
-
-
+// passes personal using promise
+// Slot.find({'owner.id': req.user._id}).exec()
+//     .then(function (personal) {
+//
+//         res.render("slots", {personal: personal});
+//     })
 
 
 // Slot.find({ 'owner.id' : req.user._id },function(err, slots) {
