@@ -10,25 +10,52 @@ var User = require("../models/user");
 
 //User Time Slots Home Page
 router.get('/slots',isLoggedIn, function (req, res) {
-    Slot.find({ 'owner.id' : req.user._id },function(err, slots) {
-    if (err) {
-        console.log(err);
-    } else {
-        res.render("slots", {slots: slots});
-    }
+    Slot.find({'owner.id': req.user._id}).exec()
+        .then(function (personal) {
+            var personal = personal
+            res.render("slots", {personal: personal});
+        })
+            // var result = [];
+        //     return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
+        //         .then(function (personal, other) {
+        //             return [personal, other];
+        //         });
+        // })
+        // .then(function(personal, other) {
+        //     res.render("slots", {personal: personal, other: other});
+        // })
+
+    // .then(function(result){
+    //     var project = result[1];
+    //     return Issues.find({project_id: project._id}).exec()
+    //         .then(function(issues) {
+    //             result.push(issues);
+    //             return result;
+    //         })
+    // })
+    // .then(function(result){
+    //     var user = result[0];
+    //     var project = result[1];
+    //     var issues = result[2];
+    //
+    //     res.render('./views/issues/index', {user: user, project: project, issues: issues});
+    // })
+    // .then(undefined, function(err){
+    //     //Handle error
+    // })
 });
 
-});
 
 
-// find current user slots
-// Slot.personal(req.user._id, function (err, slots) {
+
+
+// Slot.find({ 'owner.id' : req.user._id },function(err, slots) {
 //     if (err) {
-//         console.log(error);
+//         console.log(err);
 //     } else {
 //         res.render("slots", {slots: slots});
 //     }
-// })
+// });
 
 
 // find other users slots
