@@ -11,45 +11,49 @@ var User = require("../models/user");
 //User Time Slots Home Page
 router.get('/slots',isLoggedIn, function (req, res) {
     Slot.find({'owner.id': req.user._id}).exec()
-        .then(function (personal) {
-            var personal = personal
-            return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
-                .then(function (other) {
-                    var other = other
-                    // return [personal, other];
-                    res.render("slots", {personal: personal, other: other});
-                });
+    .then(function (personal) {
+        // var personal = personal
+        return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
+            .then(function (other) {
+                // var other = other;
+                res.render("slots", {personal: personal, other: other});
 
-        })
-            // var result = [];
-        //     return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
-        //         .then(function (personal, other) {
-        //             return [personal, other];
-        //         });
-        // })
-        // .then(function(personal, other) {
-        //     res.render("slots", {personal: personal, other: other});
-        // })
 
-    // .then(function(result){
-    //     var project = result[1];
-    //     return Issues.find({project_id: project._id}).exec()
-    //         .then(function(issues) {
-    //             result.push(issues);
-    //             return result;
-    //         })
-    // })
-    // .then(function(result){
-    //     var user = result[0];
-    //     var project = result[1];
-    //     var issues = result[2];
-    //
-    //     res.render('./views/issues/index', {user: user, project: project, issues: issues});
-    // })
-    // .then(undefined, function(err){
-    //     //Handle error
-    // })
+            });
+
+    })
+
+
 });
+
+// var matches = other[j].filter(function (matches) {
+//     return matches.startTime < personal[i].endTime && matches.endTime > personal[i].startTime;
+
+// Slot.find({'owner.id': req.user._id}).exec()
+//     .then(function (personal) {
+//         // var personal = personal
+//         return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
+//             .then(function (other) {
+//                 // var other = other;
+//                 for (var i=0; i < personal.length; i+=1 ) {
+//                     for (var j=0; j < other.length; j+=1 ) {
+//                         if (other[j].startTime < personal[i].endTime && other[j].endTime > personal[i].startTime) {
+//                             return matches;
+//                             // var matches = other;
+//                             console.log(matches);
+//                         }
+//                     }
+//
+//                 }
+//                 // return [personal, other];
+//                 res.render("slots", {personal: personal, other: other});
+//             });
+//
+//     })
+
+
+// syntax for accessing object values in array
+// console.log(other[i].startTime);
 
 // passes personal using promise
 // Slot.find({'owner.id': req.user._id}).exec()
