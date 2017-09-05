@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 var express = require("express");
 var router = express.Router({mergeParams: true});
 var Slot = require("../models/slot");
@@ -12,44 +12,37 @@ var User = require("../models/user");
 router.get('/slots',isLoggedIn, function (req, res) {
     Slot.find({'owner.id': req.user._id}).exec()
     .then(function (personal) {
-        // var personal = personal
-        return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
-            .then(function (other) {
-                // var other = other;
-                res.render("slots", {personal: personal, other: other});
+        var personal = personal;
+        for(var i = 0; i < personal.length; i++) {
+            Slot.find({
+                'owner.id': {$ne: req.user._id},
+                'startTime': {$lt: [i].endTime},
+                'endTime': {$gt: [i].startTime}
+            })
+        }
 
-
-            });
 
     })
+        .then(function (matches){
+            console.log(matches);
+        })
 
 
 });
 
+// for(let p of personal){
+//     matches.push(Slot.find({'owner.id': {$ne: req.user._id}, 'startTime': {$lt: p.endTime}, 'endTime': {$gt: p.startTime}})).exec()
+//         .then(function(matches){
+//             // console.log(matches);
+//
+//
+//         })
+// }
+
 // var matches = other[j].filter(function (matches) {
 //     return matches.startTime < personal[i].endTime && matches.endTime > personal[i].startTime;
 
-// Slot.find({'owner.id': req.user._id}).exec()
-//     .then(function (personal) {
-//         // var personal = personal
-//         return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
-//             .then(function (other) {
-//                 // var other = other;
-//                 for (var i=0; i < personal.length; i+=1 ) {
-//                     for (var j=0; j < other.length; j+=1 ) {
-//                         if (other[j].startTime < personal[i].endTime && other[j].endTime > personal[i].startTime) {
-//                             return matches;
-//                             // var matches = other;
-//                             console.log(matches);
-//                         }
-//                     }
-//
-//                 }
-//                 // return [personal, other];
-//                 res.render("slots", {personal: personal, other: other});
-//             });
-//
-//     })
+
 
 
 // syntax for accessing object values in array
@@ -84,7 +77,7 @@ router.get('/slots',isLoggedIn, function (req, res) {
 
 //CREATE - add new time slot to DB
 router.post("/slots", isLoggedIn, function(req, res){
-    user = req.user;
+    var user = req.user;
     // var name = req.body.name;
     // var startTime = req.body.startTime;
     // var newSlot = {name: name, startTime: startTime};
