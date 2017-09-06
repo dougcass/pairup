@@ -11,24 +11,37 @@ var User = require("../models/user");
 //User Time Slots Home Page
 router.get('/slots',isLoggedIn, function (req, res) {
     Slot.find({'owner.id': req.user._id}).exec()
-    .then(function (personal) {
-        var personal = personal;
-        for(var i = 0; i < personal.length; i++) {
-            Slot.find({
-                'owner.id': {$ne: req.user._id},
-                'startTime': {$lt: [i].endTime},
-                'endTime': {$gt: [i].startTime}
-            })
-        }
+        .then(function (personal) {
+            var personal = personal;
+            return Slot.find({'owner.id': {$ne: req.user._id}}).exec()
+                .then(function (other) {
+                    var other = other;
+                    var matches = [];
+                    for(let p of personal) {
+                        for(let o of other) {
+                            if(o.startTime < p.endTime && o.endTime > p.startTime ){
+                                matches.push(o);
+                            }
+                        }
+
+                    }
+                    Promise.all(matches).then(function(matches){
+                        console.log(matches);
+                        res.render("slots", {personal: personal, other: other, matches: matches});
+                    })
+
+                });
 
 
-    })
-        .then(function (matches){
-            console.log(matches);
+
         })
 
 
 });
+
+// var matches = other.filter(function (o) {
+//     return o.startTime < p.endTime && o.endTime > p.startTime;
+// })
 
 // for(let p of personal){
 //     matches.push(Slot.find({'owner.id': {$ne: req.user._id}, 'startTime': {$lt: p.endTime}, 'endTime': {$gt: p.startTime}})).exec()
