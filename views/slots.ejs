@@ -17,9 +17,6 @@
                 </a>
             </div>
 
-            <!--<div class="end_time">-->
-                <!--<h1>slot.endTime</h1>-->
-            <!--</div>-->
         </div>
     </div>
     <% }); %>
@@ -38,9 +35,6 @@
                 </a>
             </div>
 
-            <!--<div class="end_time">-->
-            <!--<h1>slot.endTime</h1>-->
-            <!--</div>-->
         </div>
     </div>
     <% }); %>
@@ -56,12 +50,10 @@
             <div class="slot">
                 <a href="/slots/<%= slot._id %>">
                     <h2>Your Slot: <%= slot.startTime%> - <%= slot.endTime%></h2>
+                    <h2>Contact: <%= slot.owner.username%></h2>
                 </a>
             </div>
 
-            <!--<div class="end_time">-->
-            <!--<h1>slot.endTime</h1>-->
-            <!--</div>-->
         </div>
     </div>
     <% }); %>

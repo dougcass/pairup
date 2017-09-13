@@ -15,7 +15,9 @@ var slotSchema = new mongoose.Schema({
 
 
 });
-//works
+
+
+//Static Methods
 // slotSchema.statics.all = function (cb) {
 //     return this.model('Slot').find({}, cb);
 // };
@@ -25,47 +27,7 @@ var slotSchema = new mongoose.Schema({
 // };
 
 
-// search by username
-// slotSchema.statics.search = function search (name, cb) {
-//     return this.where('owner.username', new RegExp(name, 'i')).exec(cb);
-// };
-//execute method
-// Slot.search('foo', function (err, slot) {
-//     if (err) {
-//         console.log(error);
-//     } else {
-//         console.log(slot);
-//     }
-// })
 
-
-// slotSchema.statics.personal = function personal (currentUser, cb) {
-//     return this.where('owner.id', currentUser).exec(cb);
-// };
-
-
-
-
-
-
-
-
-
-
-
-// new RegExp(name, 'i'
-// slotSchema.statics.findName = function (name, cb) {
-//     return this.model('Slot').findOne({'name': 'name'}, cb);
-// };
-
-
-// slotSchema.methods.findByName = function(name, cb) {
-//     return this.model('Slot').find({ name: name }, cb);
-// };
-
-// slotSchema.statics.findByName = function (name, cb) {
-//     return this.model('Slot').findOne({name : "name"}, cb);
-// };
 
 
 

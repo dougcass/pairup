@@ -6,8 +6,6 @@ var User = require("../models/user");
 
 
 
-
-
 //User Time Slots Home Page
 router.get('/slots',isLoggedIn, function (req, res) {
     Slot.find({'owner.id': req.user._id}).exec()
@@ -39,69 +37,17 @@ router.get('/slots',isLoggedIn, function (req, res) {
 
 });
 
-// var matches = other.filter(function (o) {
-//     return o.startTime < p.endTime && o.endTime > p.startTime;
-// })
-
-// for(let p of personal){
-//     matches.push(Slot.find({'owner.id': {$ne: req.user._id}, 'startTime': {$lt: p.endTime}, 'endTime': {$gt: p.startTime}})).exec()
-//         .then(function(matches){
-//             // console.log(matches);
-//
-//
-//         })
-// }
-
-// var matches = other[j].filter(function (matches) {
-//     return matches.startTime < personal[i].endTime && matches.endTime > personal[i].startTime;
-
-
-
-
-// syntax for accessing object values in array
-// console.log(other[i].startTime);
-
-// passes personal using promise
-// Slot.find({'owner.id': req.user._id}).exec()
-//     .then(function (personal) {
-//
-//         res.render("slots", {personal: personal});
-//     })
-
-
-// Slot.find({ 'owner.id' : req.user._id },function(err, slots) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         res.render("slots", {slots: slots});
-//     }
-// });
-
-
-// find other users slots
-// Slot.find({ 'owner.id' : { $ne : req.user._id } },function(err, slots) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         res.render("slots", {slots: slots});
-//     }
-// });
-
-
 //CREATE - add new time slot to DB
 router.post("/slots", isLoggedIn, function(req, res){
     var user = req.user;
     // var name = req.body.name;
     // var startTime = req.body.startTime;
-    // var newSlot = {name: name, startTime: startTime};
-    //Create new time slot and save to DB
 
     Slot.create(req.body.slot, function(err, slot){
         if(err) {
             console.log(err);
         } else {
             //add username and id to new slot
-            //* req.user._id; ???
             slot.owner.id = req.user.id;
             slot.owner.username = req.user.username;
             slot.save();
@@ -113,8 +59,6 @@ router.post("/slots", isLoggedIn, function(req, res){
     });
 
 });
-
-
 
 //NEW - show form to create time slot
 router.get("/slots/new", function (req, res){
@@ -143,141 +87,6 @@ router.delete("/slots/:id", function(req, res){
     });
 });
 
-// function isLoggedIn(req, res, next){
-//     if(req.isAuthenticated()){
-//         return next();
-//     }
-//     res.redirect("/login");
-// }
-
-//Working promise syntax
-// function allSlots(){
-//     return new Promise((resolve, reject) => {
-//         Slot.find({}, function(err, slots) {
-//
-//             resolve(slots);
-//
-//         });
-//     });
-// }
-//
-// var x;
-//
-// allSlots().then((slots) => {
-//     x = slots;
-// });
-
-// console.log(x);
-// console.log(allSlots);
-//Query-promise format: creates findAll array in function but global empty
-// var query = Slot.find({});
-//
-// var promise = query.exec();
-//
-// var findAll = [];
-//
-// var allSlots = promise.then(function (doc) {
-//     var all = doc;
-//     return all;
-//     }).then(function(all){
-//     return findAll.push(all);
-//
-//     });
-
-// console.log(findAll);
-
-
-
-// Slot.personal( function (err, slot) {
-//     if (err) {
-//         console.log(error);
-//     } else {
-//         console.log(slot);
-//     }
-// })
-
-
-
-
-
-//Works returns object using static method
-// Slot.findByName("brad", function(err, slot) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         // userSlot.push(slot);
-//         console.log(slot);
-//     }
-//     // do something with user
-// });
-
-
-//Works- assigns slots to allSlots variable in function scope
-// function retrieveAll(callback) {
-//     Slot.find({}, function(err, slots) {
-//         if (err) {
-//             callback(err, null);
-//         } else {
-//             callback(null, slots);
-//         }
-//     });
-// }
-//
-//
-// var allSlots;
-//
-// retrieveAll(function(err, slots) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         // userSlot.push(slot);
-//         // console.log(slots);
-//         allSlots = slots;
-//         // console.log(allSlots);
-//     }
-//
-// });
-//
-// new Promise(function(res, rej) {})
-//
-// console.log(allSlots);
-
-
-
-
-
-
-
-
-
-
-
-
-// logs slots in array
-// Slot.all(function (err, slots) {
-//     var allSlots = slots;
-//     console.log(allSlots[0].name);
-//
-//
-// });
-
-
-
-
-
-
-//logs found slot
-// Slot.findByName('fred', function(err, slots) {
-//     fredSlots = slots;
-//     fredSlots;
-// });
-
-// logs found user
-// Slot.findOne({owner: 'glen'})
-//     .then(function(user){
-//         console.log(user);
-//     });
-
 //middleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
@@ -285,9 +94,6 @@ function isLoggedIn(req, res, next){
     }
     res.redirect("/login");
 }
-
-
-
 
 
 module.exports = router;
